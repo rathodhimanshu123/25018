@@ -4,6 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Onboarding from "./pages/Onboarding";
+import Dashboard from "./pages/Dashboard";
+import CallHistory from "./pages/CallHistory";
+import EmergencyAlert from "./pages/EmergencyAlert";
+import DoctorsList from "./pages/DoctorsList";
+import AIAssistant from "./pages/AIAssistant";
 import Home from "./pages/Home";
 import SymptomChecker from "./pages/SymptomChecker";
 import DoctorConsult from "./pages/DoctorConsult";
@@ -22,7 +27,12 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Onboarding />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<Dashboard />} />
+          <Route path="/call-history" element={<CallHistory />} />
+          <Route path="/emergency" element={<EmergencyAlert />} />
+          <Route path="/doctors" element={<DoctorsList />} />
+          <Route path="/ai-assistant" element={<AIAssistant />} />
+          <Route path="/old-home" element={<Home />} />
           <Route path="/symptom-checker" element={<SymptomChecker />} />
           <Route path="/doctor-consult" element={<DoctorConsult />} />
           <Route path="/video-consult" element={<VideoConsult />} />

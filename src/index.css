@@ -2,67 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NabhaCare Design System - Futuristic Telemedicine UI */
+/* NabhaCare Design System - Light Theme for Rural Users */
 
 @layer base {
   :root {
-    /* Premium Black & White Design System */
-    --background: 0 0% 3%;
-    --foreground: 0 0% 98%;
+    /* Light Theme Design System */
+    --background: 0 0% 100%;
+    --foreground: 220 13% 9%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 9%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 9%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 3%;
-    --primary-glow: 0 0% 100%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --secondary-glow: 0 0% 25%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 25 95% 53%;
 
-    --accent: 0 0% 85%;
-    --accent-foreground: 0 0% 3%;
-    --accent-glow: 0 0% 95%;
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 220 9% 46%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 10%;
-    --ring: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 0 0% 96%;
+    --ring: 25 95% 53%;
 
-    --radius: 1.2rem;
+    --radius: 1rem;
 
-    /* Premium Gradient System */
-    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 3%) 0%, hsl(0, 0%, 8%) 50%, hsl(0, 0%, 12%) 100%);
-    --gradient-card: linear-gradient(145deg, hsla(0, 0%, 15%, 0.8) 0%, hsla(0, 0%, 8%, 0.9) 50%, hsla(0, 0%, 5%, 0.95) 100%);
-    --gradient-glass: linear-gradient(145deg, hsla(0, 0%, 20%, 0.15) 0%, hsla(0, 0%, 10%, 0.25) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(0, 0%, 98%) 0%, hsl(0, 0%, 85%) 100%);
-    --gradient-surface: linear-gradient(145deg, hsla(0, 0%, 10%, 0.95) 0%, hsla(0, 0%, 6%, 0.98) 100%);
+    /* Light Theme Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 98%) 50%, hsl(0, 0%, 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsla(0, 0%, 100%, 0.9) 0%, hsla(0, 0%, 98%, 0.8) 100%);
+    --gradient-glass: linear-gradient(145deg, hsla(0, 0%, 100%, 0.8) 0%, hsla(0, 0%, 98%, 0.6) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(25, 95%, 53%) 0%, hsl(25, 95%, 48%) 100%);
+    --gradient-surface: linear-gradient(145deg, hsla(0, 0%, 100%, 0.95) 0%, hsla(0, 0%, 98%, 0.9) 100%);
     
-    /* Premium Glassmorphism */
-    --glass-primary: hsla(0, 0%, 15%, 0.4);
-    --glass-secondary: hsla(0, 0%, 8%, 0.6);
-    --glass-border: hsla(0, 0%, 25%, 0.3);
-    --glass-border-subtle: hsla(0, 0%, 35%, 0.2);
+    /* Light Theme Glassmorphism */
+    --glass-primary: hsla(0, 0%, 100%, 0.8);
+    --glass-secondary: hsla(0, 0%, 98%, 0.9);
+    --glass-border: hsla(220, 13%, 91%, 0.5);
+    --glass-border-subtle: hsla(220, 13%, 91%, 0.3);
     
-    /* Premium Shadows & Glows */
-    --shadow-glass: 0 8px 32px hsla(0, 0%, 0%, 0.4), 0 4px 16px hsla(0, 0%, 0%, 0.2);
-    --shadow-elevated: 0 20px 40px hsla(0, 0%, 0%, 0.6), 0 8px 24px hsla(0, 0%, 100%, 0.05);
-    --shadow-neumorphism: 8px 8px 16px hsla(0, 0%, 0%, 0.4), -8px -8px 16px hsla(0, 0%, 15%, 0.1);
+    /* Light Theme Shadows */
+    --shadow-glass: 0 8px 32px hsla(0, 0%, 0%, 0.1), 0 4px 16px hsla(0, 0%, 0%, 0.05);
+    --shadow-elevated: 0 20px 40px hsla(0, 0%, 0%, 0.15), 0 8px 24px hsla(0, 0%, 0%, 0.05);
+    --shadow-neumorphism: 8px 8px 16px hsla(0, 0%, 0%, 0.1), -8px -8px 16px hsla(0, 0%, 100%, 0.8);
     
-    /* Premium Glows */
-    --glow-primary: 0 0 30px hsla(0, 0%, 100%, 0.4), 0 0 60px hsla(0, 0%, 100%, 0.1);
-    --glow-secondary: 0 0 25px hsla(0, 0%, 70%, 0.3), 0 0 50px hsla(0, 0%, 70%, 0.1);
-    --glow-accent: 0 0 20px hsla(0, 0%, 85%, 0.5), 0 0 40px hsla(0, 0%, 85%, 0.2);
-    --glow-success: 0 0 20px hsla(120, 60%, 50%, 0.4);
+    /* Light Theme Glows */
+    --glow-primary: 0 0 30px hsla(25, 95%, 53%, 0.3), 0 0 60px hsla(25, 95%, 53%, 0.1);
+    --glow-secondary: 0 0 25px hsla(142, 76%, 36%, 0.3), 0 0 50px hsla(142, 76%, 36%, 0.1);
+    --glow-accent: 0 0 20px hsla(142, 76%, 36%, 0.4), 0 0 40px hsla(142, 76%, 36%, 0.2);
+    --glow-success: 0 0 20px hsla(142, 76%, 36%, 0.4);
     --glow-warning: 0 0 20px hsla(45, 80%, 60%, 0.4);
     --glow-danger: 0 0 20px hsla(0, 70%, 60%, 0.5);
 
@@ -122,10 +119,10 @@
 
   body {
     @apply font-inter antialiased;
-    background: var(--gradient-hero);
+    background: #ffffff;
     min-height: 100vh;
     overflow-x: hidden;
-    color: hsl(var(--foreground));
+    color: #111827;
   }
 
   html {
