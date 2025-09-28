@@ -3,19 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { HeartPulse, Mail, Lock, User, Eye, EyeOff, Stethoscope, Shield } from "lucide-react";
+import { HeartPulse, Phone, Hash, User, Stethoscope, Shield } from "lucide-react";
 
 const Onboarding = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
   const [userRole, setUserRole] = useState<'patient' | 'doctor' | 'healthcare'>('patient');
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    mobileNumber: '',
+    otp: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (field: string, value: string) => {
@@ -29,26 +28,21 @@ const Onboarding = () => {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+    if (!formData.mobileNumber) {
+      newErrors.mobileNumber = 'Mobile number is required';
+    } else if (!/^\d{10}$/.test(formData.mobileNumber)) {
+      newErrors.mobileNumber = 'Please enter a valid 10-digit mobile number';
     }
 
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+    if (!formData.otp) {
+      newErrors.otp = 'OTP is required';
+    } else if (!/^\d{6}$/.test(formData.otp)) {
+      newErrors.otp = 'Please enter a valid 6-digit OTP';
     }
 
     if (!isLogin) {
       if (!formData.name) {
         newErrors.name = 'Name is required';
-      }
-      if (!formData.confirmPassword) {
-        newErrors.confirmPassword = 'Please confirm your password';
-      } else if (formData.password !== formData.confirmPassword) {
-        newErrors.confirmPassword = 'Passwords do not match';
       }
     }
 
@@ -65,10 +59,31 @@ const Onboarding = () => {
     }
   };
 
+  const handleSendOtp = () => {
+    if (!formData.mobileNumber) {
+      setErrors({ mobileNumber: 'Please enter mobile number first' });
+      return;
+    }
+    if (!/^\d{10}$/.test(formData.mobileNumber)) {
+      setErrors({ mobileNumber: 'Please enter a valid 10-digit mobile number' });
+      return;
+    }
+    
+    // Simulate sending OTP
+    setIsOtpSent(true);
+    console.log('OTP sent to:', formData.mobileNumber);
+  };
+
+  const handleResendOtp = () => {
+    // Simulate resending OTP
+    console.log('OTP resent to:', formData.mobileNumber);
+  };
+
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
-    setFormData({ name: '', email: '', password: '', confirmPassword: '' });
+    setFormData({ name: '', mobileNumber: '', otp: '' });
     setErrors({});
+    setIsOtpSent(false);
   };
 
   return (
@@ -163,68 +178,56 @@ const Onboarding = () => {
                 </div>
               )}
 
-              {/* Email field */}
+              {/* Mobile Number field */}
               <div className="space-y-2">
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                   <Input
-                    type="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    type="tel"
+                    placeholder="Enter Mobile Number"
+                    value={formData.mobileNumber}
+                    onChange={(e) => handleInputChange('mobileNumber', e.target.value)}
+                    maxLength={10}
                     className="pl-10 h-12 bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500 focus:border-orange-500 focus:ring-orange-500/20 rounded-xl"
                   />
                 </div>
-                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                {errors.mobileNumber && <p className="text-red-500 text-sm">{errors.mobileNumber}</p>}
               </div>
 
-              {/* Password field */}
+              {/* OTP field */}
               <div className="space-y-2">
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Hash className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                   <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={(e) => handleInputChange('password', e.target.value)}
-                    className="pl-10 pr-10 h-12 bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500 focus:border-orange-500 focus:ring-orange-500/20 rounded-xl"
+                    type="number"
+                    placeholder="Enter OTP"
+                    value={formData.otp}
+                    onChange={(e) => handleInputChange('otp', e.target.value)}
+                    maxLength={6}
+                    className="pl-10 h-12 bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500 focus:border-orange-500 focus:ring-orange-500/20 rounded-xl"
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                  </button>
                 </div>
-                {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+                {errors.otp && <p className="text-red-500 text-sm">{errors.otp}</p>}
               </div>
-
-              {/* Confirm Password field for signup only */}
-              {!isLogin && (
-                <div className="space-y-2">
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Confirm Password"
-                      value={formData.confirmPassword}
-                      onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                      className="pl-10 h-12 bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-500 focus:border-orange-500 focus:ring-orange-500/20 rounded-xl"
-                    />
-                  </div>
-                  {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword}</p>}
-                </div>
-              )}
 
               {/* Submit Button */}
               <Button
                 type="submit"
                 className="w-full h-12 text-lg font-bold bg-orange-500 hover:bg-orange-600 text-white rounded-xl transition-colors"
               >
-                {isLogin ? 'Sign In' : 'Create Account'}
+                Verify & Sign In
               </Button>
             </form>
+
+            {/* Resend OTP Link */}
+            <div className="text-center">
+              <button 
+                onClick={handleResendOtp}
+                className="text-green-600 hover:text-green-700 text-sm font-medium transition-colors"
+              >
+                Didn't receive OTP? Resend
+              </button>
+            </div>
 
             {/* Toggle between Login and Signup */}
             <div className="text-center">
@@ -238,15 +241,6 @@ const Onboarding = () => {
                 </button>
               </p>
             </div>
-
-            {/* Forgot Password (Login only) */}
-            {isLogin && (
-              <div className="text-center">
-                <button className="text-green-600 hover:text-green-700 text-sm font-medium transition-colors">
-                  Forgot Password?
-                </button>
-              </div>
-            )}
           </CardContent>
         </Card>
 
