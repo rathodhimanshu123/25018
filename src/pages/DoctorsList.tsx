@@ -242,11 +242,6 @@ const DoctorsList = () => {
                   </span>
                 </div>
 
-                {/* Consultation Fee */}
-                <div className="text-center p-3 bg-orange-50 rounded-lg border border-orange-200">
-                  <span className="text-lg font-bold text-orange-600">{doctor.consultationFee}</span>
-                  <span className="text-sm text-gray-600 ml-1">per consultation</span>
-                </div>
 
                 {/* Action Buttons */}
                 <div className="grid grid-cols-2 gap-3">

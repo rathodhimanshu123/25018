@@ -116,37 +116,6 @@ const Dashboard = () => {
           })}
         </div>
 
-        {/* Quick Actions */}
-        <div className="mt-12">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Quick Actions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button 
-              onClick={() => navigate('/emergency')}
-              className="h-16 bg-red-500 hover:bg-red-600 text-white rounded-xl flex items-center justify-center space-x-3 shadow-lg"
-            >
-              <AlertTriangle className="w-6 h-6" />
-              <span className="font-semibold">Emergency SOS</span>
-            </Button>
-            
-            <Button 
-              onClick={() => navigate('/doctors')}
-              variant="outline"
-              className="h-16 border-orange-500 bg-white hover:bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center space-x-3"
-            >
-              <Phone className="w-6 h-6" />
-              <span className="font-semibold">Call Doctor</span>
-            </Button>
-            
-            <Button 
-              onClick={() => navigate('/ai-assistant')}
-              variant="outline"
-              className="h-16 border-green-600 bg-white hover:bg-green-50 text-green-600 rounded-xl flex items-center justify-center space-x-3"
-            >
-              <Bot className="w-6 h-6" />
-              <span className="font-semibold">AI Help</span>
-            </Button>
-          </div>
-        </div>
 
         {/* Status Cards */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -186,7 +155,6 @@ const Dashboard = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">AI Assistant</h4>
-                  <p className="text-sm text-gray-600">Online & Ready</p>
                 </div>
               </div>
             </CardContent>

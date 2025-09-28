@@ -47,8 +47,8 @@ const CallHistory = () => {
       specialization: "Neurologist",
       type: "Emergency",
       location: "Bangalore, Karnataka",
-      status: "Missed",
-      duration: "00:00"
+      status: "Completed",
+      duration: "08:30"
     },
     {
       id: 4,
@@ -78,8 +78,6 @@ const CallHistory = () => {
     switch (status) {
       case "Completed":
         return <CheckCircle className="w-5 h-5 text-green-500" />;
-      case "Missed":
-        return <XCircle className="w-5 h-5 text-red-500" />;
       default:
         return <Clock className="w-5 h-5 text-yellow-500" />;
     }
@@ -122,7 +120,7 @@ const CallHistory = () => {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto p-6">
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <Card className="bg-white border-gray-200 shadow-sm">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-gray-900">{callHistory.length}</div>
@@ -136,15 +134,6 @@ const CallHistory = () => {
                 {callHistory.filter(call => call.status === "Completed").length}
               </div>
               <div className="text-sm text-gray-600">Completed</div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-white border-gray-200 shadow-sm">
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-red-500">
-                {callHistory.filter(call => call.status === "Missed").length}
-              </div>
-              <div className="text-sm text-gray-600">Missed</div>
             </CardContent>
           </Card>
           
@@ -204,8 +193,7 @@ const CallHistory = () => {
                       <div className="flex items-center space-x-2">
                         {getStatusIcon(call.status)}
                         <span className={`text-sm font-medium ${
-                          call.status === "Completed" ? "text-green-600" :
-                          call.status === "Missed" ? "text-red-500" : "text-yellow-500"
+                          call.status === "Completed" ? "text-green-600" : "text-yellow-500"
                         }`}>
                           {call.status}
                         </span>
